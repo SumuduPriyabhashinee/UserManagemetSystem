@@ -1,0 +1,8 @@
+.links{
+    color: rgb(62, 207, 42);
+    font-size: larger;
+}
+
+.links:hover{
+    color: rgb(39, 99, 117);
+}
