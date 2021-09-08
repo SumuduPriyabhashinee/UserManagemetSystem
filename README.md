@@ -1,8 +1,12 @@
-# Getting Started with Create React App
+### User Management System Backend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### created by Sumo97
 
 ## Available Scripts
+
+Install dependencies:
+
+### `npm install`
 
 In the project directory, you can run:
 
