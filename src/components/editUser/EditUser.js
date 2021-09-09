@@ -21,6 +21,7 @@ const UserEdit = (props) => {
         telno: null,
         address: null,
         image: null,
+        newimage:null,
         imagefile: null,
         create_date: null,
         update_date: null
@@ -43,7 +44,7 @@ const UserEdit = (props) => {
         setstate({
             ...state,
             imagefile: file,
-            image: URL.createObjectURL(e.target.files[0])
+            newimage: URL.createObjectURL(e.target.files[0])
         });
 
     }
@@ -125,15 +126,7 @@ const UserEdit = (props) => {
         axios.put(CONSTANTS.HOSTNAME + `/api/users/user/${state.id}`, userdetails)
           .then(resp => {
             console.log(resp);
-            Swal.fire({
-                position: 'middle',
-                icon: 'success',
-                title:'Your changes has been saved',
-                text: resp.data.msg,
-                showConfirmButton: false,
-                timer: 2000
-              });
-            if (state.imagefile!==null) {
+            if (state.newimage!==null) {
                 console.log("avatar image SAVING")
               const formData = new FormData();
               formData.append("image", state.imagefile);
@@ -148,18 +141,19 @@ const UserEdit = (props) => {
                 // ---------- avatar image updating END--------------
     
                 .catch(err => {
-                  Swal.fire({
-                    position: 'middle',
-                    icon: 'error',
-                    title: "Error when updating avatar image",
-                    text: err,
-                    showConfirmButton: false,
-                    timer: 1500
-                  });
                   console.log(err)
                 })
-                console.log("cover image SAVING end")
+                console.log("avatar image SAVING end")
             }
+            Swal.fire({
+                position: 'middle',
+                icon: 'success',
+                title:'Your changes has been saved',
+                text: resp.data.msg,
+                showConfirmButton: false,
+                timer: 2000
+              });
+              window.location.href = `/${state.id}`;
           })
           .catch(err => {
             Swal.fire({
@@ -238,7 +232,7 @@ const UserEdit = (props) => {
                 <Form.Control type="text" defaultValue={state.name} onChange={handleName} />
                 <hr /><br />
                 {state.image !== '' ?
-                    <img className="cvrimgview" src={state.image} alt="thumb" width="20%" height="auto" />
+                    <img className="cvrimgview" src={state.newimage!==null?state.newimage:state.image} alt="thumb" width="20%" height="auto" />
                     : <img className="cvrimgview" src={'http://localhost:5000/images/dummy.jpg'} alt="thumb" width="100%" height="auto" />}
                 <br /><br />
                 <input

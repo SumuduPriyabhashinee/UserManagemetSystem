@@ -71,6 +71,7 @@ const UserInfo = (props) => {
                     {state.image !== '' ?
                                 <img className="cvrimgview" src={state.image} alt="thumb" width="20%" height="auto"/>
                                 : <img className="cvrimgview" src={'http://localhost:5000/images/dummy.jpg'} alt="thumb" width="100%" height="auto"/>}
+                    <br /><br /><br />
                     <h3>Date of birth: {state.dob!==null?state.dob.substring(0,10):""}</h3><br />
                     <h3>Gender : {state.gender}</h3><br />
                     <h3>Age : {getAge(state.dob)}</h3><br />
